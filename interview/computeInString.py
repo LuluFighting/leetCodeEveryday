@@ -23,7 +23,7 @@ class Solution:
             i,j=0,0
             while j<len(str):
                 if str[j] in operation:
-                    if i<j:
+                    if i<j :
                         opList.append(str[i:j])
                     opList.append(str[j])
                     j+=1
@@ -36,16 +36,16 @@ class Solution:
                 opList.append(str[i:j])
         splitStr()
         def computeTwoNum():
-            num1 = numStack[len(numStack) - 1]
+            num1 = numStack[- 1]
             numStack.pop()
-            num2 = numStack[len(numStack) - 1]
+            num2 = numStack[-1]
             numStack.pop()
             num = self.compute(num1, num2, opStack[len(opStack) - 1])
             opStack.pop()
             numStack.append(num)
         for i in range(len(opList)):
             if opList[i] in operation:
-                if len(opStack)==0 or opStack[len(opStack)-1] == '(' or (opStack[len(opStack)-1] in ('+','-') and opList[i] in ('*','/')):
+                if opList[i]=='(' or  len(opStack)==0 or opStack[-1] == '(' or (opStack[-1] in ('+','-') and opList[i] in ('*','/')):
                     opStack.append(opList[i])
                 elif opList[i]==')':
                     while len(opStack)>=1 and opStack[len(opStack)-1]!='(':
@@ -60,4 +60,4 @@ class Solution:
             computeTwoNum()
         return numStack[0]
 obj = Solution()
-print(obj.computeInString("2*4/3*2/5"))
+print(obj.computeInString("4+(6*7-4)*5"))
